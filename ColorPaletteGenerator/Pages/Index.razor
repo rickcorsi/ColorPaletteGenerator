@@ -9,7 +9,7 @@
     <div id="inputArea">
         <div class="colorpicker">
             <div class="toolheader" style="">
-                <MudText Class="maintext-large" Color="@MudBlazor.Color.Secondary" Style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">Color Picker</MudText>
+                <label class="maintext-large">Color Picker</label>
             </div> 
             <div style="display: flex; justify-content: start; margin-bottom: 10px; transition: .5s;">
                 <MudColorPicker Value="_pickerColor" ValueChanged="UpdateSelectedColor" Class="colorpickerinput" DisableToolbar="false" DisableAlpha="true" DisableColorField="false" DisablePreview="true" DisableSliders="false" DisableInputs="true" DisableModeSwitch="false" ColorPickerMode="ColorPickerMode.RGB" PickerVariant="PickerVariant.Static" />
@@ -66,6 +66,7 @@
                 </div>
             </div>
         </div>
+        <label class="textFavorites">Favorites:</label>
         <div id="favorites" class="favoritedColors">
             <div id="selectedColor" class="paletteSelect">
                 <div class="paletteselectinfo">
@@ -80,98 +81,83 @@
 @*    <button onclick="hideInfo();">Hide Info</button>
 *@    <div>
         <div class="palettearea">
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettebrightness[0]" onclick="openColorSelect('@palettebrightness[0]')">
                 <div class="paletteinfo"style="background-color: @palettebrightness[0]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[0]">@palettebrightness[0]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettebrightness[1]" onclick="openColorSelect('@palettebrightness[1]')">
                 <div class="paletteinfo" style="background-color: @palettebrightness[1]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[1]">@palettebrightness[1]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettebrightness[2]" onclick="openColorSelect('@palettebrightness[2]')">
                 <div class="paletteinfo" style="background-color: @palettebrightness[2]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[2]">@palettebrightness[2]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettebrightness[3]" onclick="openColorSelect('@palettebrightness[3]')">
                 <div class="paletteinfo" style="background-color: @palettebrightness[3]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[3]">@palettebrightness[3]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettebrightness[4]" onclick="openColorSelect('@palettebrightness[4]')">
                 <div class="paletteinfo" style="background-color: @palettebrightness[4]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[4]">@palettebrightness[4]</label>
                 </div>
             </div>
+            </MudTooltip>
         </div>
-@*        <div class="paletteinfoarea">
-            <div class="paletteinfo"style="background-color: @palettebrightness[0]">
-                <label class="palettetext" style="color: @paletteInfoTextColor1[0]">@palettebrightness[0]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettebrightness[1]">
-                <label class="palettetext" style="color: @paletteInfoTextColor1[1]">@palettebrightness[1]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettebrightness[2]">
-                <label class="palettetext" style="color: @paletteInfoTextColor1[2]">@palettebrightness[2]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettebrightness[3]">
-                <label class="palettetext" style="color: @paletteInfoTextColor1[3]">@palettebrightness[3]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettebrightness[4]">
-                <label class="palettetext" style="color: @paletteInfoTextColor1[4]">@palettebrightness[4]</label>
-            </div>
-        </div>*@
     <div>
         <div class="palettearea">
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettehue[0]" onclick="openColorSelect('@palettehue[0]')">
                 <div class="paletteinfo" style="background-color: @palettehue[0]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[0]">@palettehue[0]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettehue[1]" onclick="openColorSelect('@palettehue[1]')">
                 <div class="paletteinfo" style="background-color: @palettehue[1]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[1]">@palettehue[1]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettehue[2]" onclick="openColorSelect('@palettehue[2]')">
                 <div class="paletteinfo" style="background-color: @palettehue[2]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[2]">@palettehue[2]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettehue[3]" onclick="openColorSelect('@palettehue[3]')">
                 <div class="paletteinfo" style="background-color: @palettehue[3]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[3]">@palettehue[3]</label>
                 </div>
             </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettehue[4]" onclick="openColorSelect('@palettehue[4]')">
                 <div class="paletteinfo" style="background-color: @palettehue[4]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[4]">@palettehue[4]</label>
                 </div>
             </div>
+            </MudTooltip>
         </div>
-@*      <div class="paletteinfoarea">
-            <div class="paletteinfo" style="background-color: @palettehue[0]">
-                <label class="palettetext" style="color: @paletteInfoTextColor2[0]">@palettehue[0]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettehue[1]">
-                <label class="palettetext" style="color: @paletteInfoTextColor2[1]">@palettehue[1]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettehue[2]">
-                <label class="palettetext" style="color: @paletteInfoTextColor2[2]">@palettehue[2]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettehue[3]">
-                <label class="palettetext" style="color: @paletteInfoTextColor2[3]">@palettehue[3]</label>
-            </div>
-            <div class="paletteinfo" style="background-color: @palettehue[4]">
-                <label class="palettetext" style="color: @paletteInfoTextColor2[4]">@palettehue[4]</label>
-            </div>
-        </div>*@
     </div>
     </div>
 </div>
-
 @code{
     protected override void OnInitialized()
     {

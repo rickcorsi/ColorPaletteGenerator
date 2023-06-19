@@ -41,15 +41,17 @@ a, .btn-link {
     min-height: 400px;
     transition: .5s;
     margin-top: 35px;
-    margin-bottom: 35px;
 }
 .toolheader {
     display: flex;
     justify-content: space-between;
 }
 .maintext-large {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 17px;
+    margin-top: 17px;
+    margin-left: 17px;
+    margin-right: 17px;
 }
 .colorpickerinput {
     max-width: 80px;
@@ -130,6 +132,7 @@ a, .btn-link {
     margin: 15px;
     font-size: 17px;
     transition: .5s;
+    font-family: 'Rubik', sans-serif;
 }
 .paletteSelect {
     width: 550px;
@@ -162,4 +165,10 @@ a, .btn-link {
 }
 .closeButton {
     background-color: red;
+}
+.textFavorites {
+    font-size: 27px;
+    margin: 15px;
+    color: black;
+    font-family: 'Rubik', sans-serif;
 }
