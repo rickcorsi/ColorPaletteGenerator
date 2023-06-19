@@ -1,0 +1,344 @@
+﻿@page "/"
+@using MudBlazor.Utilities;
+@using System.Drawing;
+@using System.Text.RegularExpressions
+@using System.ComponentModel
+
+<PageTitle>Color Palette Generator</PageTitle>
+<div class="mainarea">
+    <div id="inputArea">
+        <div class="colorpicker">
+            <div class="toolheader" style="">
+                <MudText Class="maintext-large" Color="@MudBlazor.Color.Secondary" Style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">Color Picker</MudText>
+            </div> 
+            <div style="display: flex; justify-content: start; margin-bottom: 10px; transition: .5s;">
+                <MudColorPicker Value="_pickerColor" ValueChanged="UpdateSelectedColor" Class="colorpickerinput" DisableToolbar="false" DisableAlpha="true" DisableColorField="false" DisablePreview="true" DisableSliders="false" DisableInputs="true" DisableModeSwitch="false" ColorPickerMode="ColorPickerMode.RGB" PickerVariant="PickerVariant.Static" />
+                <div style="margin-bottom: 10px;">
+                <MudList Clickable="true" SelectedItemChanged="ChangeSelectedColor">
+                <MudListItem Style="max-width: 205px" OnClick="firstColorTrue">
+                    <div class="colorpreview" style="@($"background-color:{firstColor};")"></div>
+                </MudListItem>
+                <MudTextField @bind-Value="firstColorConverted" Style="margin-right: 7px; margin-bottom: 7px; max-width: 205px" Adornment="Adornment.End" AdornmentIcon="@Icons.Outlined.ChangeCircle" AdornmentAriaLabel="Refresh" OnAdornmentClick="HEXColorEntered" ReadOnly="false" Variant="Variant.Outlined"/>
+                </MudList>
+                    <MudText Style="margin-top: 15px;">Recent Colors</MudText>
+                    <div class="recentcolors">         
+                        <button @onclick="() => setPickedColor(0)" class="colorpreviewsmall" style="background-color: @recentColor[0]"></button>
+                        <button @onclick="() => setPickedColor(1)" class="colorpreviewsmall" style="background-color: @recentColor[1]"></button>
+                        <button @onclick="() => setPickedColor(2)" class="colorpreviewsmall" style="background-color: @recentColor[2]"></button>
+                        <button @onclick="() => setPickedColor(3)" class="colorpreviewsmall" style="background-color: @recentColor[3]"></button>
+                        <button @onclick="() => setPickedColor(4)" class="colorpreviewsmall" style="background-color: @recentColor[4]"></button>
+                        <button @onclick="() => setPickedColor(5)" class="colorpreviewsmall" style="background-color: @recentColor[5]"></button>
+                        <button @onclick="() => setPickedColor(6)" class="colorpreviewsmall" style="background-color: @recentColor[6]"></button>
+                        <button @onclick="() => setPickedColor(7)" class="colorpreviewsmall" style="background-color: @recentColor[7]"></button>
+                        <button @onclick="() => setPickedColor(8)" class="colorpreviewsmall" style="background-color: @recentColor[8]"></button>
+                        <button @onclick="() => setPickedColor(9)" class="colorpreviewsmall" style="background-color: @recentColor[9]"></button>
+                        <button @onclick="() => setPickedColor(10)" class="colorpreviewsmall" style="background-color: @recentColor[10]"></button>
+                        <button @onclick="() => setPickedColor(11)" class="colorpreviewsmall" style="background-color: @recentColor[11]"></button>
+                        <button @onclick="() => setPickedColor(12)" class="colorpreviewsmall" style="background-color: @recentColor[12]"></button>
+                        <button @onclick="() => setPickedColor(13)" class="colorpreviewsmall" style="background-color: @recentColor[13]"></button>
+                        <button @onclick="() => setPickedColor(14)" class="colorpreviewsmall" style="background-color: @recentColor[14]"></button>
+                        <button @onclick="() => setPickedColor(15)" class="colorpreviewsmall" style="background-color: @recentColor[15]"></button>
+                        <button @onclick="() => setPickedColor(16)" class="colorpreviewsmall" style="background-color: @recentColor[16]"></button>
+                        <button @onclick="() => setPickedColor(17)" class="colorpreviewsmall" style="background-color: @recentColor[17]"></button>
+                        <button @onclick="() => setPickedColor(18)" class="colorpreviewsmall" style="background-color: @recentColor[18]"></button>
+                        <button @onclick="() => setPickedColor(19)" class="colorpreviewsmall" style="background-color: @recentColor[19]"></button>
+                        <button @onclick="() => setPickedColor(20)" class="colorpreviewsmall" style="background-color: @recentColor[20]"></button>
+                        <button @onclick="() => setPickedColor(21)" class="colorpreviewsmall" style="background-color: @recentColor[21]"></button>
+                        <button @onclick="() => setPickedColor(22)" class="colorpreviewsmall" style="background-color: @recentColor[22]"></button>
+                        <button @onclick="() => setPickedColor(23)" class="colorpreviewsmall" style="background-color: @recentColor[23]"></button>
+                        <button @onclick="() => setPickedColor(24)" class="colorpreviewsmall" style="background-color: @recentColor[24]"></button>
+                        <button @onclick="() => setPickedColor(25)" class="colorpreviewsmall" style="background-color: @recentColor[25]"></button>
+                        <button @onclick="() => setPickedColor(26)" class="colorpreviewsmall" style="background-color: @recentColor[26]"></button>
+                        <button @onclick="() => setPickedColor(27)" class="colorpreviewsmall" style="background-color: @recentColor[27]"></button>
+                        <button @onclick="() => setPickedColor(28)" class="colorpreviewsmall" style="background-color: @recentColor[28]"></button>
+                        <button @onclick="() => setPickedColor(29)" class="colorpreviewsmall" style="background-color: @recentColor[29]"></button>
+                        <button @onclick="() => setPickedColor(30)" class="colorpreviewsmall" style="background-color: @recentColor[30]"></button>
+                        <button @onclick="() => setPickedColor(31)" class="colorpreviewsmall" style="background-color: @recentColor[31]"></button>     
+                        <button @onclick="() => setPickedColor(32)" class="colorpreviewsmall" style="background-color: @recentColor[32]"></button>
+                        <button @onclick="() => setPickedColor(33)" class="colorpreviewsmall" style="background-color: @recentColor[33]"></button>
+                        <button @onclick="() => setPickedColor(34)" class="colorpreviewsmall" style="background-color: @recentColor[34]"></button>
+                        <button @onclick="() => setPickedColor(35)" class="colorpreviewsmall" style="background-color: @recentColor[35]"></button>
+                        <button @onclick="() => setPickedColor(36)" class="colorpreviewsmall" style="background-color: @recentColor[36]"></button>
+                        <button @onclick="() => setPickedColor(37)" class="colorpreviewsmall" style="background-color: @recentColor[37]"></button>
+                        <button @onclick="() => setPickedColor(38)" class="colorpreviewsmall" style="background-color: @recentColor[38]"></button>
+                        <button @onclick="() => setPickedColor(39)" class="colorpreviewsmall" style="background-color: @recentColor[39]"></button>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="favorites" class="favoritedColors">
+            <div id="selectedColor" class="paletteSelect">
+                <div class="paletteselectinfo">
+                <label id="selectedColorText" class="palettetext"></label>
+                </div>
+@*                <div class="paletteselectclose">
+                <button><ion-icon class="closeButton" name="close"></ion-icon></button>
+                </div>*@
+            </div>
+        </div>
+    </div>
+@*    <button onclick="hideInfo();">Hide Info</button>
+*@    <div>
+        <div class="palettearea">
+            <div class="palettecolor" style="background-color: @palettebrightness[0]" onclick="openColorSelect('@palettebrightness[0]')">
+                <div class="paletteinfo"style="background-color: @palettebrightness[0]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor1[0]">@palettebrightness[0]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettebrightness[1]" onclick="openColorSelect('@palettebrightness[1]')">
+                <div class="paletteinfo" style="background-color: @palettebrightness[1]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor1[1]">@palettebrightness[1]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettebrightness[2]" onclick="openColorSelect('@palettebrightness[2]')">
+                <div class="paletteinfo" style="background-color: @palettebrightness[2]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor1[2]">@palettebrightness[2]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettebrightness[3]" onclick="openColorSelect('@palettebrightness[3]')">
+                <div class="paletteinfo" style="background-color: @palettebrightness[3]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor1[3]">@palettebrightness[3]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettebrightness[4]" onclick="openColorSelect('@palettebrightness[4]')">
+                <div class="paletteinfo" style="background-color: @palettebrightness[4]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor1[4]">@palettebrightness[4]</label>
+                </div>
+            </div>
+        </div>
+@*        <div class="paletteinfoarea">
+            <div class="paletteinfo"style="background-color: @palettebrightness[0]">
+                <label class="palettetext" style="color: @paletteInfoTextColor1[0]">@palettebrightness[0]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettebrightness[1]">
+                <label class="palettetext" style="color: @paletteInfoTextColor1[1]">@palettebrightness[1]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettebrightness[2]">
+                <label class="palettetext" style="color: @paletteInfoTextColor1[2]">@palettebrightness[2]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettebrightness[3]">
+                <label class="palettetext" style="color: @paletteInfoTextColor1[3]">@palettebrightness[3]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettebrightness[4]">
+                <label class="palettetext" style="color: @paletteInfoTextColor1[4]">@palettebrightness[4]</label>
+            </div>
+        </div>*@
+    <div>
+        <div class="palettearea">
+            <div class="palettecolor" style="background-color: @palettehue[0]" onclick="openColorSelect('@palettehue[0]')">
+                <div class="paletteinfo" style="background-color: @palettehue[0]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor2[0]">@palettehue[0]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettehue[1]" onclick="openColorSelect('@palettehue[1]')">
+                <div class="paletteinfo" style="background-color: @palettehue[1]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor2[1]">@palettehue[1]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettehue[2]" onclick="openColorSelect('@palettehue[2]')">
+                <div class="paletteinfo" style="background-color: @palettehue[2]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor2[2]">@palettehue[2]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettehue[3]" onclick="openColorSelect('@palettehue[3]')">
+                <div class="paletteinfo" style="background-color: @palettehue[3]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor2[3]">@palettehue[3]</label>
+                </div>
+            </div>
+            <div class="palettecolor" style="background-color: @palettehue[4]" onclick="openColorSelect('@palettehue[4]')">
+                <div class="paletteinfo" style="background-color: @palettehue[4]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor2[4]">@palettehue[4]</label>
+                </div>
+            </div>
+        </div>
+@*      <div class="paletteinfoarea">
+            <div class="paletteinfo" style="background-color: @palettehue[0]">
+                <label class="palettetext" style="color: @paletteInfoTextColor2[0]">@palettehue[0]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettehue[1]">
+                <label class="palettetext" style="color: @paletteInfoTextColor2[1]">@palettehue[1]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettehue[2]">
+                <label class="palettetext" style="color: @paletteInfoTextColor2[2]">@palettehue[2]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettehue[3]">
+                <label class="palettetext" style="color: @paletteInfoTextColor2[3]">@palettehue[3]</label>
+            </div>
+            <div class="paletteinfo" style="background-color: @palettehue[4]">
+                <label class="palettetext" style="color: @paletteInfoTextColor2[4]">@palettehue[4]</label>
+            </div>
+        </div>*@
+    </div>
+    </div>
+</div>
+
+@code{
+    protected override void OnInitialized()
+    {
+        HEXColorEntered();
+    }
+    //Color Picker
+    private bool App_ColorPicker = false;
+    private bool isFirstColor = true;
+    private bool isSecondColor = false;
+    private bool isExpandedColorPicker = false;
+    private bool isDarkMode = false;
+    private bool _isDarkMode = false;
+    private bool customThemeCreated = false;
+    private bool theme1 = true;
+    private bool theme2 = false;
+    private bool theme3 = false;
+    private bool theme4 = false;
+    private bool theme5 = false;
+    public MudColor firstColor = "#0476f6";
+    public MudColor secondColor = "#ed0c3d";
+    public MudColor _pickerColor = "#0476f6";
+    public MudColor basecolor = "#ffffff";
+    string firstColorConverted = "#0476f6";
+    string colorValStr = "#######";
+    string[] recentColor = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", 
+    "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", 
+    "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", 
+    "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
+    string[] palettebrightness = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
+    string[] palettehue = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
+    string[] paletteInfoTextColor1 = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
+    string[] paletteInfoTextColor2 = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
+
+    private void ChangeSelectedColor(MudListItem item)
+    {
+        if (isFirstColor == true)
+        {
+            isSecondColor = false;
+            _pickerColor = firstColor;
+            UpdateSelectedColor(firstColor);
+        }
+        if (isFirstColor == false)
+        {
+            isSecondColor = true;
+            isFirstColor = false;
+            _pickerColor = secondColor;
+            UpdateSelectedColor(secondColor);
+        }
+    }
+    public void UpdateSelectedColor(MudColor value)
+    {
+        _pickerColor = value;
+        firstColor = value;
+        firstColorConverted = firstColor.ToString(MudColorOutputFormats.Hex);
+    }
+    private void firstColorTrue()
+    {
+        _pickerColor = firstColorConverted;
+        isFirstColor = true;
+        isSecondColor = false;
+        setRecentColor();
+    }
+    private void HEXColorEntered()
+    {
+        if (firstColorConverted.Contains("##"))
+        {
+            firstColorConverted = firstColorConverted.Replace("##", "#");
+        }
+        var regex = @"(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)";
+        var match = Regex.Match(firstColorConverted, regex,RegexOptions.IgnoreCase);
+        if (!match.Success)
+        {
+            Console.Write("Matches: " + match);
+            firstColorConverted = "#000000";
+        }
+        firstColor = firstColorConverted;
+        if (isFirstColor == true){
+            _pickerColor = firstColorConverted;
+        }
+        setRecentColor();
+    }
+    public static System.Drawing.Color ChangeColorBrightness(System.Drawing.Color color, float correctionFactor)
+    {
+        float red = (float)color.R;
+        float green = (float)color.G;
+        float blue = (float)color.B;
+        if (correctionFactor < 0)
+        {
+            correctionFactor = 1 + correctionFactor;
+            red *= correctionFactor;
+            green *= correctionFactor;
+            blue *= correctionFactor;
+        }
+        else
+        {
+            red = (255 - red) * correctionFactor + red;
+            green = (255 - green) * correctionFactor + green;
+            blue = (255 - blue) * correctionFactor + blue;
+        }
+        return System.Drawing.Color.FromArgb(color.A, (int)red, (int)green, (int)blue);
+    }
+    public static System.Drawing.Color StringToColor(string colorStr)
+    {
+        TypeConverter cc = TypeDescriptor.GetConverter(typeof(System.Drawing.Color));
+        var result = (System.Drawing.Color)cc.ConvertFromString(colorStr);
+        return result;
+    }
+    private static String HexConverter(System.Drawing.Color c)
+    {
+        return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+    }
+    private void setRecentColor() 
+    {
+        if (recentColor[0] != _pickerColor)
+        {
+            string tempRecentColor = recentColor[recentColor.Length - 1];
+            for (int t = recentColor.Length - 1; t > 0; t--)
+            {
+                recentColor[t] = recentColor[t-1];
+            }
+            recentColor[0] = tempRecentColor;
+            recentColor[0] = _pickerColor.ToString(MudColorOutputFormats.Hex);
+            setPaletteBrightness();
+            setPaletteHue();
+        }
+    }
+    private void setPaletteBrightness()
+    {
+        System.Drawing.Color _basecolor = StringToColor(recentColor[0]);
+        for (int t = 0; t < palettebrightness.Length; t++)
+        {
+            if (t != 0)
+            {
+                _basecolor = ChangeColorBrightness(_basecolor, -.25f);
+            }
+            palettebrightness[t] = HexConverter(_basecolor);
+            basecolor = palettebrightness[t];
+            if (basecolor.L > .5){
+                paletteInfoTextColor1[t] = "#000000";
+            }
+            if (basecolor.L < .5){
+                paletteInfoTextColor1[t] = "#ffffff";
+            }
+        }
+    }
+    private void setPaletteHue()
+    {
+        System.Drawing.Color _basecolor = StringToColor(recentColor[0]);
+        for (int t = 0; t < palettehue.Length; t++)
+        {
+            if (t != 0)
+            {
+                _basecolor = ChangeColorBrightness(_basecolor, .25f);
+            }
+            palettehue[t] = HexConverter(_basecolor);
+            basecolor = palettehue[t];
+            if (basecolor.L > .5){
+                paletteInfoTextColor2[t] = "#000000";
+            }
+            if (basecolor.L < .5){
+                paletteInfoTextColor2[t] = "#ffffff";
+            }
+        }
+    }
+    private void setPickedColor(int n) {
+        _pickerColor = recentColor[n];
+        setRecentColor();
+    }
+
+}
