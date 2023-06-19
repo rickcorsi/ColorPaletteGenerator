@@ -26,10 +26,11 @@ This Color Palette Generator is released under the MIT License. Feel free to mod
 
 Enjoy using my Color Palette Generator to create stunning color palettes for your design projects!
 ## Screenshots
-![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/00a43af3-6d1e-4f4c-8ed6-adcc40c1ba26)
-![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/8a868fcd-bde3-4487-a3d3-2f031e7a04ac)
-![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/c006ce91-68ed-4d54-9195-cfd424a9026c)
-![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/e3e1422c-e89f-4295-91f5-0ba380edd62a)
+
+![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/ca52cafb-7024-4b9f-86d0-ff75c379d0e3)
+![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/91de07fe-9e3b-4505-a709-09b4ecf0c5eb)
+![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/e0f13297-83a4-4bf9-be68-fd36b23bcca3)
+![image](https://github.com/rickcorsi/ColorPaletteGenerator/assets/90643765/7581be3a-5b46-4e88-9606-ea9b483200af)
 
 ## Authors
   - **Rick Corsi** -
