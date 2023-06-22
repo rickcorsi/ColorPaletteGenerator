@@ -134,6 +134,16 @@ a, .btn-link {
     transition: .5s;
     font-family: 'Rubik', sans-serif;
 }
+.paletteselectbutton {
+    width: 100px;
+    height: 100px;
+    transition: .5s;
+    padding-top: 25px;
+    justify-content: center;
+    display: flex;
+    background-color: red;
+    opacity: 0.0;
+}
 .paletteSelect {
     width: 550px;
     height: 100px;
@@ -141,18 +151,24 @@ a, .btn-link {
     background-color: white;
     transition: .5s;
     display: flex;
+    z-index: 0;
+    position: relative;
 }
     .paletteSelect:hover {
-        width: 500px;
+        width: 550px;
+        margin-left: 15px;
     }
 .paletteselectinfo {
-    width: 550px;
-    height: 80px;
+    width: 150px;
+    height: 100px;
     transition: .5s;
 }
-.paletteselectclose {
-    width: 50px;
-    height: 80px;
+.paletteselectinput {
+    width: 400px;
+    height: 100px;
+    transition: .5s;
+    justify-content: end;
+    display: flex;
 }
 .favoritedColors {
     width: 550px;
@@ -171,4 +187,14 @@ a, .btn-link {
     margin: 15px;
     color: black;
     font-family: 'Rubik', sans-serif;
+}
+.selectmask {
+    visibility: hidden;
+}
+.button-updatecolor {
+    border: solid 1px;
+    border-radius: 5px;
+    border-color: black;
+    padding: 3px;
+    margin-left: 115px;
 }

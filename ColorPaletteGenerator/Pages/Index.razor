@@ -20,6 +20,7 @@
                 </MudListItem>
                 <MudTextField @bind-Value="firstColorConverted" Style="margin-right: 7px; margin-bottom: 7px; max-width: 205px" Adornment="Adornment.End" AdornmentIcon="@Icons.Outlined.ChangeCircle" AdornmentAriaLabel="Refresh" OnAdornmentClick="HEXColorEntered" ReadOnly="false" Variant="Variant.Outlined"/>
                 </MudList>
+                                    <button class="button-updatecolor" onclick="@HEXColorEntered">Update Color</button>
                     <MudText Style="margin-top: 15px;">Recent Colors</MudText>
                     <div class="recentcolors">         
                         <button @onclick="() => setPickedColor(0)" class="colorpreviewsmall" style="background-color: @recentColor[0]"></button>
@@ -67,14 +68,17 @@
             </div>
         </div>
         <label class="textFavorites">Favorites:</label>
-        <div id="favorites" class="favoritedColors">
+        <div id="favorites" class="favoritedColors"></div>
+                <div class="selectmask">
             <div id="selectedColor" class="paletteSelect">
                 <div class="paletteselectinfo">
                 <label id="selectedColorText" class="palettetext"></label>
                 </div>
-@*                <div class="paletteselectclose">
-                <button><ion-icon class="closeButton" name="close"></ion-icon></button>
-                </div>*@
+                <div class="paletteselectinput">
+                    <div class="paletteselectbutton">
+                        <label class="palettetext">Remove</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
