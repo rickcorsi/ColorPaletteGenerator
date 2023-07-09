@@ -13,7 +13,7 @@ function openColorSelect(c) {
 
     var str = c;
     var firstTwoChars = str.slice(1, 2);
-    console.log(firstTwoChars); // Co
+    console.log(firstTwoChars);
     t.style.color = "black";
     for (var i = 0; i < 9; i++) {
         if (firstTwoChars == i) {
@@ -29,11 +29,30 @@ function cloneDiv() {
     console.log("Objs: " + objs);
 
     var container = document.getElementById('favorites');
-    var original = document.getElementById('selectedColor'),
+    var original = document.getElementById('selectedColor');
 
-    clone = original.cloneNode(true); // true means clone all childNodes and all event handlers
+    clone = original.cloneNode(true);
     clone.id = "clonedDiv_" + objs;
+    clone.textContent = document.getElementById('selectedColorText').textContent;
+    var hex = document.getElementById('selectedColorText').textContent;
+    checkBrightness(hex);
+    const base = 127.5;
+    if (checkBrightness(hex) < base) {
+        clone.style.color = "white";
+    }
+    else {
+        clone.style.color = "black";
+    }
     container.appendChild(clone);
     objs++;
     console.log("clone.id: " + clone.id);
+}
+function checkBrightness(color) {
+    const hex = color.replace('#', '');
+    const c_r = parseInt(hex.substr(0, 2), 16);
+    const c_g = parseInt(hex.substr(2, 2), 16);
+    const c_b = parseInt(hex.substr(4, 2), 16);
+    const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+    console.log("brightness: " + brightness);
+    return brightness;
 }

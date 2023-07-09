@@ -153,6 +153,9 @@ a, .btn-link {
     display: flex;
     z-index: 0;
     position: relative;
+    padding-left: 5px;
+    font-size: 17px;
+    font-family: 'Rubik', sans-serif;
 }
     .paletteSelect:hover {
         width: 550px;
