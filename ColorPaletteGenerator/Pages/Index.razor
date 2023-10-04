@@ -5,9 +5,10 @@
 @using System.ComponentModel
 
 <PageTitle>Color Palette Generator</PageTitle>
+
 <div class="mainarea">
     <div id="inputArea">
-        <div class="colorpicker">
+        <div id="classPick" class="colorpicker">
             <div class="toolheader" style="">
                 <label class="maintext-large">Color Picker</label>
             </div> 
@@ -67,19 +68,38 @@
                 </div>
             </div>
         </div>
-        <label class="textFavorites">Favorites:</label>
-        <div id="favorites" class="favoritedColors"></div>
-        <div class="selectmask">
-            <div id="selectedColor" class="paletteSelect">
-                <button id="selectedColorDelete" class="closeButton"><MudIcon Icon="@Icons.Material.Filled.Close" Title="Favorite"/></button>
-                <div class="paletteselectinfo">
-                <label id="selectedColorTextHEX" class="palettetext"></label>
+@*        <button id="toggleButton" class="toggleFavView" onclick="toggleFavoritesView()">Toggle</button>*@   
+    <label id="favsText" class="textFavorites">Favorites:</label>
+        <div>
+            <div id="favorites" class="favoritedColors"></div>
+            <div class="favoritedColorsMask"><div class="favoritedColorsObj"></div></div>
+            <div class="selectmask">
+                <div id="selectedColor" class="paletteSelect">
+                    <div id="selectedColorButtons">
+                    <button id="selectedColorExpand" class="closeButton"><MudIcon Icon="@Icons.Material.Filled.RemoveRedEye" Title="Favorite"/></button>
+                    <button id="selectedColorDelete" class="expandButton"><MudIcon Icon="@Icons.Material.Filled.Close" Title="Favorite"/></button>
+                    </div>
+                    <div class="paletteselectinfo">
+                    <label id="selectedColorTextHEX" class="palettetext"></label>
+                    </div>
                 </div>
             </div>
         </div>
+@*        <div>
+            <div id="favoritesSmall" class="favoritedColorsSmall"></div>
+            <div class="favoritedColorsMask"><div class="favoritedColorsObj"></div></div>
+            <div class="selectmaskSmall">
+                <div id="selectedColorSmall" class="paletteSelectSmall">
+                </div>
+            </div>
+        </div>*@
     </div>
 
     <div>
+        <div id="fullColor" class="fullview">
+            <div id="fullColorHEX" class="textHex"></div>
+            <button id="selectedColorExpandClose" class="closePreviewButton" onclick="closePreview()"><MudIcon Icon="@Icons.Material.Filled.RemoveCircleOutline" Title="Favorite"/></button>
+        </div>
         <div class="palettearea">
             <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
             <div class="palettecolor" style="background-color: @palettebrightnessDark[0]" onclick="openColorSelect('@palettebrightnessDark[0]')">
@@ -154,6 +174,22 @@
             </div>
             </MudTooltip>
         </div>
+        <div class="palettearea">
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
+            <div class="palettecolor-primary" style="background-color: @palettebrightnessLight[0]" onclick="openColorSelect('@palettebrightnessLight[0]')">
+                <div class="paletteinfo" style="background-color: @palettebrightnessLight[0]">
+                    <label class="palettetext" style="color: @paletteInfoTextColor2[0]">@palettebrightnessLight[0]</label>
+                </div>
+            </div>
+            </MudTooltip>
+            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
+            <div class="palettecolor-comp" style="background-color: @palettecomp" onclick="openColorSelect('@palettecomp')">
+                <div class="paletteinfo" style="background-color: @palettecomp">
+                    <label class="palettetext" style="color: @paletteInfoTextComp">@palettecomp</label>
+                </div>
+            </div>
+            </MudTooltip>
+        </div>
     </div>
 </div>
 @code{
@@ -179,7 +215,7 @@
     public MudColor secondColor = "#ed0c3d";
     public MudColor _pickerColor = "#0476f6";
     public MudColor basecolor = "#ffffff";
-    string firstColorConverted = "#0476f6";
+    string firstColorConverted = "#04f6d2"; //Default Color
     string colorValStr = "#######";
     string[] recentColor = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", 
     "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", 
@@ -189,6 +225,9 @@
     string[] palettebrightnessLight = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
     string[] paletteInfoTextColor1 = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
     string[] paletteInfoTextColor2 = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",};
+    string palettecomp = "ffffff";
+    string paletteInfoTextComp = "ffffff";
+    public float intensity = -.25f;
     private void ChangeSelectedColor(MudListItem item)
     {
         if (isFirstColor == true)
@@ -205,6 +244,40 @@
             UpdateSelectedColor(secondColor);
         }
     }
+
+    private void setPaletteComplementaryColor()
+    {
+        // Assuming recentColor[0] is a string representing a color in HEX format, e.g., "#RRGGBB"
+        string baseColorHex = recentColor[0];
+
+        // Convert the HEX string to a Color object
+        System.Drawing.Color baseColor = System.Drawing.ColorTranslator.FromHtml(baseColorHex);
+
+        // Calculate the complementary color
+        System.Drawing.Color complementaryColor = CalculateComplementaryColor(baseColor);
+
+        // Convert the complementary color back to HEX format
+        palettecomp = System.Drawing.ColorTranslator.ToHtml(complementaryColor);
+        MudColor temp = palettecomp;
+        Console.WriteLine("palettecomp: " + palettecomp);
+        if (temp.L > .5){
+            paletteInfoTextComp = "#000000";
+        }
+        if (temp.L < .5){
+            paletteInfoTextComp = "#ffffff";
+        }
+        // Now, palettecomp contains the complementary color in HEX format
+    }
+
+    private System.Drawing.Color CalculateComplementaryColor(System.Drawing.Color baseColor)
+    {
+        int red = 255 - baseColor.R;
+        int green = 255 - baseColor.G;
+        int blue = 255 - baseColor.B;
+
+        return System.Drawing.Color.FromArgb(red, green, blue);
+    }
+
     public void UpdateSelectedColor(MudColor value)
     {
         _pickerColor = value;
@@ -280,6 +353,7 @@
             recentColor[0] = _pickerColor.ToString(MudColorOutputFormats.Hex);
             setPaletteBrightnessDarker();
             setPaletteBrightnessLighter();
+            setPaletteComplementaryColor();
         }
     }
     private void setPaletteBrightnessDarker()
@@ -289,14 +363,14 @@
         {
             if (t != 0)
             {
-                _basecolor = ChangeColorBrightness(_basecolor, -.25f);
+                _basecolor = ChangeColorBrightness(_basecolor, intensity);
             }
             palettebrightnessDark[t] = HexConverter(_basecolor);
             basecolor = palettebrightnessDark[t];
-            if (basecolor.L > .5){
+            if (basecolor.L > .500){
                 paletteInfoTextColor1[t] = "#000000";
             }
-            if (basecolor.L < .5){
+            if (basecolor.L < .500){
                 paletteInfoTextColor1[t] = "#ffffff";
             }
         }

@@ -2,6 +2,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: .7s;
 }
 h1:focus {
     outline: none;
@@ -32,15 +33,17 @@ a, .btn-link {
 }
 .colorpicker {
     border-radius: 0px;
-    background-color: snow;
+    background-color: white;
     outline: 2px solid;
     outline-color: black;
     width: 550px;
     height: 400px;
     min-width: 550px;
     min-height: 400px;
-    transition: .5s;
+    transition: .3s;
     margin-top: 35px;
+    position: relative;
+    right: 0%;
 }
 .toolheader {
     display: flex;
@@ -101,7 +104,7 @@ a, .btn-link {
     display: flex;
     justify-content: center;
     margin-left: 35px;
-    margin-top: 35px;
+    margin-top: -17px;
     margin-bottom: 65px;
 }
 .palettecolor {
@@ -113,6 +116,28 @@ a, .btn-link {
     justify-content: center;
 }
     .palettecolor:hover {
+        margin-top: 15px;
+    }
+.palettecolor-primary {
+    width: 600px;
+    height: 250px;
+    transition: .5s;
+    display: flex;
+    padding-top: 200px;
+    justify-content: start;
+}
+    .palettecolor-primary:hover {
+        margin-top: 15px;
+    }
+.palettecolor-comp {
+    width: 150px;
+    height: 250px;
+    transition: .5s;
+    display: flex;
+    padding-top: 200px;
+    justify-content: start;
+}
+    .palettecolor-comp:hover {
         margin-top: 15px;
     }
 .paletteinfoarea {
@@ -139,7 +164,7 @@ a, .btn-link {
     height: 100px;
     transition: .5s;
     padding-top: 25px;
-    justify-content: center;
+    justify-content: space-around;
     display: flex;
     background-color: red;
     opacity: 0.0;
@@ -151,17 +176,30 @@ a, .btn-link {
     background-color: white;
     transition: .5s;
     display: flex;
-    justify-content: space-between;
-    z-index: 0;
+    justify-content: start;
+    z-index: 3;
     position: relative;
-    padding-left: 5px;
+    padding-left: 15px;
+    padding-top: 15px;
     font-size: 17px;
     font-family: 'Rubik', sans-serif;
-
 }
     .paletteSelect:hover {
         width: 550px;
         margin-left: 15px;
+    }
+.paletteSelectSmall {
+    transition: .5s;
+    min-width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+    .paletteSelectSmall:hover {
+        min-width: 50px;
+        height: 50px;
+        margin: 0px;
+        -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+        clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     }
 .paletteselectinfo {
     width: 150px;
@@ -181,28 +219,135 @@ a, .btn-link {
     justify-content: center;
     flex-direction: column-reverse;
 }
-#inputArea {
+.favoritedColorsMask {
+    width: 550px;
+    height: 70px;
+    padding-top: 35px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.favoritedColorsObj {
+    width: 450px;
+    height: 4px;
+    background-color: #cacfd6;
+}
+.favoritedColorsSmall {
+    max-width: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    flex-direction: row-reverse;
+    margin-top: -100px;
+    visibility: visible;
+}
+.favorites-area {
 
 }
+.fullview {
+    width: 750px;
+    height: 0;
+    display: flex;
+    justify-content: end;
+    margin-left: 35px;
+    margin-top: 35px;
+    margin-bottom: 18px;
+    transition: .5s;
+}
+#inputArea {
+}
 .closeButton {
-    background-color: none;
+    background-color: transparent;
     height: 50px;
     width: 50px;
     z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    transition: .3s;
 }
+    .closeButton:hover {
+        height: 55px;
+    }
+.expandButton {
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .3s;
+}
+    .expandButton:hover {
+        height: 55px;
+    }
+.closePreviewButton {
+    display: none;
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: .3s;
+}
+    .closePreviewButton:hover {
+        height: 55px;
+    }
 .textFavorites {
     font-size: 27px;
     margin: 15px;
+    margin-top: 15px;
     color: black;
     font-family: 'Rubik', sans-serif;
+    transition: .5s;
+}
+.textHex {
+    font-size: 37px;
+    margin: 15px;
+    margin-top: 15px;
+    color: black;
+    font-family: 'Rubik', sans-serif;
+    transition: .5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
 }
 .selectmask {
     visibility: hidden;
 }
+.selectmaskSmall {
+    visibility: hidden;
+}
 .button-updatecolor {
-    border: solid 1px;
+    border: solid 2px;
     border-radius: 5px;
     border-color: black;
     padding: 3px;
-    margin-left: 115px;
+    margin-left: 87px;
+    height: 25px;
+    width: 115px;
+    transition: .5s;
+}
+.button-updatecolor:hover {
+    border: solid 4px;
+    border-radius: 5px;
+    border-color: black;
+    padding: 3px;
+    margin-left: 87px;
+    height: 25px;
+    width: 115px;
+}
+.toggleFavView {
+    height: 20px;
+    width: 60px;
+    background-color: aquamarine;
+}
+.toggleFavView-active {
+    height: 20px;
+    width: 60px;
+    background-color: red;
 }
