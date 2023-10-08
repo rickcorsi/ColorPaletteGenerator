@@ -263,7 +263,7 @@ a, .btn-link {
     z-index: 10;
     position: absolute;
     top: 0;
-    right: 50px;
+    right: 55px;
     transition: .3s;
 }
     .closeButton:hover {
@@ -282,6 +282,55 @@ a, .btn-link {
     .expandButton:hover {
         height: 55px;
     }
+.copyButton {
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 110px;
+    transition: .3s;
+}
+    .copyButton:hover {
+        height: 55px;
+    }
+.pickButton {
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 165px;
+    transition: .3s;
+}
+    .pickButton:hover {
+        height: 55px;
+    }
+.copyButtonPalette {
+    background-color: transparent;
+    height: 50px;
+    min-width: 50px;
+    z-index: 10;
+    transition: .3s;
+}
+    .copyButtonPalette:hover {
+        height: 55px;
+    }
+.favButtonPalette {
+    background-color: transparent;
+    height: 50px;
+    min-width: 50px;
+    z-index: 10;
+    transition: .3s;
+    position: relative;
+    top: -200px;
+    right: -160px;
+}
+    .favButtonPalette:hover {
+        height: 55px;
+    }
 .closePreviewButton {
     display: none;
     background-color: transparent;
@@ -294,6 +343,20 @@ a, .btn-link {
     transition: .3s;
 }
     .closePreviewButton:hover {
+        height: 55px;
+    }
+.downloadPreviewButton {
+    display: none;
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 60px;
+    transition: .3s;
+}
+    .downloadPreviewButton:hover {
         height: 55px;
     }
 .textFavorites {
@@ -350,4 +413,22 @@ a, .btn-link {
     height: 20px;
     width: 60px;
     background-color: red;
+}
+.alertContainer {
+    background-color: black;
+    position: fixed;
+    bottom: 15px;
+    left: -600%;
+    transition: .5s;
+    border-radius: 15px;
+    z-index: 15;
+}
+.alertText {
+    font-size: 20px;
+    margin: 15px;
+    margin-top: 15px;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    transition: .5s;
+    z-index: 5;
 }

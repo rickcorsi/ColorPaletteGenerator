@@ -24,7 +24,7 @@
                 <button class="button-updatecolor" onclick="@HEXColorEntered">Update Color</button>
                     <MudText Style="margin-top: 15px;">Recent Colors</MudText>
                     <div class="recentcolors">         
-                        <button @onclick="() => setPickedColor(0)" class="colorpreviewsmall" style="background-color: @recentColor[0]"></button>
+                        <button id="recentbutton0" @onclick="() => setPickedColor(0)" class="colorpreviewsmall" style="background-color: @recentColor[0]"></button>
                         <button @onclick="() => setPickedColor(1)" class="colorpreviewsmall" style="background-color: @recentColor[1]"></button>
                         <button @onclick="() => setPickedColor(2)" class="colorpreviewsmall" style="background-color: @recentColor[2]"></button>
                         <button @onclick="() => setPickedColor(3)" class="colorpreviewsmall" style="background-color: @recentColor[3]"></button>
@@ -76,6 +76,8 @@
             <div class="selectmask">
                 <div id="selectedColor" class="paletteSelect">
                     <div id="selectedColorButtons">
+                    <button id="selectedColorPick" class="pickButton"><MudIcon Icon="" Title="Favorite"/></button>
+                    <button id="selectedColorCopy" class="copyButton"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
                     <button id="selectedColorExpand" class="closeButton"><MudIcon Icon="@Icons.Material.Filled.RemoveRedEye" Title="Favorite"/></button>
                     <button id="selectedColorDelete" class="expandButton"><MudIcon Icon="@Icons.Material.Filled.Close" Title="Favorite"/></button>
                     </div>
@@ -97,7 +99,8 @@
 
     <div>
         <div id="fullColor" class="fullview">
-            <div id="fullColorHEX" class="textHex"></div>
+            <div id="fullColorHEX" onclick="toggleHide()" class="textHex"></div>
+            <button id="selectedColorExpandDownload" class="downloadPreviewButton" onclick="downloadPreview()"><MudIcon Icon="@Icons.Material.Filled.Download" Title="Favorite"/></button>
             <button id="selectedColorExpandClose" class="closePreviewButton" onclick="closePreview()"><MudIcon Icon="@Icons.Material.Filled.RemoveCircleOutline" Title="Favorite"/></button>
         </div>
         <div class="palettearea">
@@ -191,6 +194,10 @@
             </MudTooltip>
         </div>
     </div>
+</div>
+
+<div id="alertContain" class="alertContainer">
+    <label id="alert" class="alertText"></label>
 </div>
 @code{
     protected override void OnInitialized()
