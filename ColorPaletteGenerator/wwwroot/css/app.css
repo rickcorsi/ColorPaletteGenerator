@@ -3,6 +3,9 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     transition: .7s;
+    --mud-palette-primary-darken: #2F3433;
+    --mud-palette-primary-lighten: #6F7473;
+    --mud-palette-primary: #3f4645;
 }
 h1:focus {
     outline: none;
@@ -149,7 +152,12 @@ a, .btn-link {
     margin-left: 35px;
 }
 .paletteinfo {
-    width: 150px;
+    width: 100px;
+    height: 50px;
+    transition: 1s;
+}
+.palettebuttons {
+    width: 50px;
     height: 50px;
     transition: 1s;
 }
@@ -179,9 +187,9 @@ a, .btn-link {
     justify-content: start;
     z-index: 3;
     position: relative;
-    padding-left: 15px;
-    padding-top: 15px;
-    font-size: 17px;
+    padding-left: 10px;
+    padding-top: 6px;
+    font-size: 15px;
     font-family: 'Rubik', sans-serif;
 }
     .paletteSelect:hover {
@@ -221,16 +229,25 @@ a, .btn-link {
 }
 .favoritedColorsMask {
     width: 550px;
-    height: 70px;
-    padding-top: 35px;
+    height: 80px;
+    padding-top: 25px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: row;
+    background-color: transparent;
 }
 .favoritedColorsObj {
-    width: 450px;
-    height: 4px;
-    background-color: #cacfd6;
+    width: 100%;
+    height: 2px;
+    margin-top: 15px;
+    background-color: #000000;
+}
+.favoritedColorsControls {
+    width: 120px;
+    height: 55px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: transparent;
 }
 .favoritedColorsSmall {
     max-width: 550px;
@@ -314,9 +331,12 @@ a, .btn-link {
     min-width: 50px;
     z-index: 10;
     transition: .3s;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
 }
     .copyButtonPalette:hover {
-        height: 55px;
+        bottom: -5px;
     }
 .favButtonPalette {
     background-color: transparent;
@@ -325,11 +345,11 @@ a, .btn-link {
     z-index: 10;
     transition: .3s;
     position: relative;
-    top: -200px;
-    right: -160px;
+    bottom: 250px;
+    right: 0px;
 }
     .favButtonPalette:hover {
-        height: 55px;
+        bottom: 245px;
     }
 .closePreviewButton {
     display: none;
@@ -359,6 +379,27 @@ a, .btn-link {
     .downloadPreviewButton:hover {
         height: 55px;
     }
+.favButtonClose {
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    transition: .3s;
+    margin-left: 5px;
+}
+    .favButtonClose:hover {
+        height: 55px;
+    }
+.favButtonSave {
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    transition: .3s;
+}
+    .favButtonSave:hover {
+        height: 55px;
+    }
 .textFavorites {
     font-size: 27px;
     margin: 15px;
@@ -371,12 +412,12 @@ a, .btn-link {
     font-size: 37px;
     margin: 15px;
     margin-top: 15px;
-    color: black;
+    color: transparent;
     font-family: 'Rubik', sans-serif;
     transition: .5s;
     position: fixed;
     top: 0;
-    left: 0;
+    left: 10px;
     z-index: 5;
 }
 .selectmask {
@@ -416,6 +457,7 @@ a, .btn-link {
 }
 .alertContainer {
     background-color: black;
+    height: 40px;
     position: fixed;
     bottom: 15px;
     left: -600%;
@@ -426,7 +468,7 @@ a, .btn-link {
 .alertText {
     font-size: 20px;
     margin: 15px;
-    margin-top: 15px;
+    margin-top: 6px;
     color: white;
     font-family: 'Rubik', sans-serif;
     transition: .5s;

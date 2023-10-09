@@ -5,6 +5,11 @@
 @using System.ComponentModel
 
 <PageTitle>Color Palette Generator</PageTitle>
+<style>
+        :root {
+
+        }
+</style>
 
 <div class="mainarea">
     <div id="inputArea">
@@ -69,15 +74,20 @@
             </div>
         </div>
 @*        <button id="toggleButton" class="toggleFavView" onclick="toggleFavoritesView()">Toggle</button>*@   
-    <label id="favsText" class="textFavorites">Favorites:</label>
+    <label id="favsText" class="textFavorites">Favorites</label>
         <div>
             <div id="favorites" class="favoritedColors"></div>
-            <div class="favoritedColorsMask"><div class="favoritedColorsObj"></div></div>
+            <div class="favoritedColorsMask">
+                <div class="favoritedColorsObj"></div>
+                <div class="favoritedColorsControls">
+                    <button id="saveFavs" onclick="saveFavorites()" class="favButtonSave"><MudIcon Icon="@Icons.Material.Filled.Save" Title="Favorite"/></button>
+                    <button id="clearFavs" onclick="closeAll()" class="favButtonClose"><MudIcon Icon="@Icons.Material.Filled.Close" Title="Favorite"/></button>
+                </div>
+                </div>
             <div class="selectmask">
                 <div id="selectedColor" class="paletteSelect">
                     <div id="selectedColorButtons">
-                    <button id="selectedColorPick" class="pickButton"><MudIcon Icon="" Title="Favorite"/></button>
-                    <button id="selectedColorCopy" class="copyButton"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="selectedColorCopy" class="copyButton" title="click here"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
                     <button id="selectedColorExpand" class="closeButton"><MudIcon Icon="@Icons.Material.Filled.RemoveRedEye" Title="Favorite"/></button>
                     <button id="selectedColorDelete" class="expandButton"><MudIcon Icon="@Icons.Material.Filled.Close" Title="Favorite"/></button>
                     </div>
@@ -104,94 +114,118 @@
             <button id="selectedColorExpandClose" class="closePreviewButton" onclick="closePreview()"><MudIcon Icon="@Icons.Material.Filled.RemoveCircleOutline" Title="Favorite"/></button>
         </div>
         <div class="palettearea">
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessDark[0]" onclick="openColorSelect('@palettebrightnessDark[0]')">
+            <div id="paletteColorDefault" class="palettecolor" style="background-color: @palettebrightnessDark[0]">
                 <div class="paletteinfo"style="background-color: @palettebrightnessDark[0]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[0]">@palettebrightnessDark[0]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessDark[0]">
+                    <button id="paletteCopy_00" onclick="copyColorSelect('@palettebrightnessDark[0]', '00')" style="color: @paletteInfoTextColor1[0]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_00" onclick="openColorSelect('@palettebrightnessDark[0]', '00')" style="color: @paletteInfoTextColor1[0]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessDark[1]" onclick="openColorSelect('@palettebrightnessDark[1]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessDark[1]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessDark[1]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[1]">@palettebrightnessDark[1]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessDark[1]">
+                    <button id="paletteCopy_01" onclick="copyColorSelect('@palettebrightnessDark[1]', '01')" style="color: @paletteInfoTextColor1[1]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_01" onclick="openColorSelect('@palettebrightnessDark[1]', '01')" style="color: @paletteInfoTextColor1[1]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessDark[2]" onclick="openColorSelect('@palettebrightnessDark[2]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessDark[2]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessDark[2]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[2]">@palettebrightnessDark[2]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessDark[2]">
+                    <button id="paletteCopy_02" onclick="copyColorSelect('@palettebrightnessDark[2]', '02')" style="color: @paletteInfoTextColor1[2]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_02" onclick="openColorSelect('@palettebrightnessDark[2]', '02')" style="color: @paletteInfoTextColor1[2]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessDark[3]" onclick="openColorSelect('@palettebrightnessDark[3]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessDark[3]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessDark[3]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[3]">@palettebrightnessDark[3]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessDark[3]">
+                    <button id="paletteCopy_03" onclick="copyColorSelect('@palettebrightnessDark[3]', '03')" style="color: @paletteInfoTextColor1[3]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_03" onclick="openColorSelect('@palettebrightnessDark[3]', '03')" style="color: @paletteInfoTextColor1[3]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessDark[4]" onclick="openColorSelect('@palettebrightnessDark[4]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessDark[4]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessDark[4]">
                     <label class="palettetext" style="color: @paletteInfoTextColor1[4]">@palettebrightnessDark[4]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessDark[4]">
+                    <button id="paletteCopy_04" onclick="copyColorSelect('@palettebrightnessDark[4]', '04')" style="color: @paletteInfoTextColor1[4]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_04" onclick="openColorSelect('@palettebrightnessDark[4]', '04')" style="color: @paletteInfoTextColor1[4]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
         </div>
         <div class="palettearea">
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessLight[0]" onclick="openColorSelect('@palettebrightnessLight[0]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessLight[0]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessLight[0]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[0]">@palettebrightnessLight[0]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessLight[0]">
+                    <button id="paletteCopy_05" onclick="copyColorSelect('@palettebrightnessLight[0]', '05')" style="color: @paletteInfoTextColor2[0]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_05" onclick="openColorSelect('@palettebrightnessLight[0]', '05')" style="color: @paletteInfoTextColor2[0]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessLight[1]" onclick="openColorSelect('@palettebrightnessLight[1]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessLight[1]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessLight[1]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[1]">@palettebrightnessLight[1]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessLight[1]">
+                    <button id="paletteCopy_06" onclick="copyColorSelect('@palettebrightnessLight[1]', '06')" style="color: @paletteInfoTextColor2[1]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_06" onclick="openColorSelect('@palettebrightnessLight[1]', '06')" style="color: @paletteInfoTextColor2[1]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessLight[2]" onclick="openColorSelect('@palettebrightnessLight[2]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessLight[2]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessLight[2]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[2]">@palettebrightnessLight[2]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessLight[2]">
+                    <button id="paletteCopy_07" onclick="copyColorSelect('@palettebrightnessLight[2]', '07')" style="color: @paletteInfoTextColor2[2]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_07" onclick="openColorSelect('@palettebrightnessLight[2]', '07')" style="color: @paletteInfoTextColor2[2]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessLight[3]" onclick="openColorSelect('@palettebrightnessLight[3]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessLight[3]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessLight[3]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[3]">@palettebrightnessLight[3]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessLight[3]">
+                    <button id="paletteCopy_08" onclick="copyColorSelect('@palettebrightnessLight[3]', '08')" style="color: @paletteInfoTextColor2[3]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_08" onclick="openColorSelect('@palettebrightnessLight[3]', '08')" style="color: @paletteInfoTextColor2[3]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor" style="background-color: @palettebrightnessLight[4]" onclick="openColorSelect('@palettebrightnessLight[4]')">
+            <div class="palettecolor" style="background-color: @palettebrightnessLight[4]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessLight[4]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[4]">@palettebrightnessLight[4]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessLight[4]">
+                    <button id="paletteCopy_09" onclick="copyColorSelect('@palettebrightnessLight[4]', '09')" style="color: @paletteInfoTextColor2[4]" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_09" onclick="openColorSelect('@palettebrightnessLight[4]', '09')" style="color: @paletteInfoTextColor2[4]" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
         </div>
         <div class="palettearea">
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor-primary" style="background-color: @palettebrightnessLight[0]" onclick="openColorSelect('@palettebrightnessLight[0]')">
+            <div class="palettecolor-primary" style="background-color: @palettebrightnessLight[0]">
                 <div class="paletteinfo" style="background-color: @palettebrightnessLight[0]">
                     <label class="palettetext" style="color: @paletteInfoTextColor2[0]">@palettebrightnessLight[0]</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettebrightnessLight[0]">
+                    <button id="paletteCopy_10" onclick="copyColorSelect('@palettebrightnessLight[0]', '10')" style="color: @paletteInfoTextColor2[0]; right: -450px;" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_10" onclick="openColorSelect('@palettebrightnessLight[0]', '10')" style="color: @paletteInfoTextColor2[0]; right: -450px;" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
-            <MudTooltip Style="margin-top: 15px;" Text="Favorite" Color="MudBlazor.Color.Dark" Placement="Placement.Top">
-            <div class="palettecolor-comp" style="background-color: @palettecomp" onclick="openColorSelect('@palettecomp')">
+            <div class="palettecolor-comp" style="background-color: @palettecomp">
                 <div class="paletteinfo" style="background-color: @palettecomp">
                     <label class="palettetext" style="color: @paletteInfoTextComp">@palettecomp</label>
                 </div>
+                <div class="palettebuttons"style="background-color: @palettecomp">
+                    <button id="paletteCopy_11" onclick="copyColorSelect('@palettecomp', '11')" style="color: @paletteInfoTextComp" class="copyButtonPalette"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Title="Favorite"/></button>
+                    <button id="paletteFav_11" onclick="openColorSelect('@palettecomp', '11')" style="color: @paletteInfoTextComp" class="favButtonPalette"><MudIcon Icon="@Icons.Material.Filled.FavoriteBorder" Title="Favorite"/></button>
+                </div>
             </div>
-            </MudTooltip>
         </div>
     </div>
 </div>
@@ -202,9 +236,15 @@
 @code{
     protected override void OnInitialized()
     {
+        GenerateRandomColor();
+    }
+    string firstColorConverted = "#04f6d2"; //Default Color
+    void GenerateRandomColor()
+    {
+        Random rand = new Random();
+        firstColorConverted = $"#{rand.Next(0x1000000):X6}";
         HEXColorEntered();
     }
-
     //Color Picker
     private bool App_ColorPicker = false;
     private bool isFirstColor = true;
@@ -222,7 +262,6 @@
     public MudColor secondColor = "#ed0c3d";
     public MudColor _pickerColor = "#0476f6";
     public MudColor basecolor = "#ffffff";
-    string firstColorConverted = "#04f6d2"; //Default Color
     string colorValStr = "#######";
     string[] recentColor = { "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", 
     "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", 
@@ -237,19 +276,8 @@
     public float intensity = -.25f;
     private void ChangeSelectedColor(MudListItem item)
     {
-        if (isFirstColor == true)
-        {
-            isSecondColor = false;
-            _pickerColor = firstColor;
-            UpdateSelectedColor(firstColor);
-        }
-        if (isFirstColor == false)
-        {
-            isSecondColor = true;
-            isFirstColor = false;
-            _pickerColor = secondColor;
-            UpdateSelectedColor(secondColor);
-        }
+        _pickerColor = firstColor;
+        UpdateSelectedColor(firstColor);
     }
 
     private void setPaletteComplementaryColor()
@@ -266,11 +294,10 @@
         // Convert the complementary color back to HEX format
         palettecomp = System.Drawing.ColorTranslator.ToHtml(complementaryColor);
         MudColor temp = palettecomp;
-        Console.WriteLine("palettecomp: " + palettecomp);
-        if (temp.L > .5){
+        if (temp.L > .500){
             paletteInfoTextComp = "#000000";
         }
-        if (temp.L < .5){
+        else {
             paletteInfoTextComp = "#ffffff";
         }
         // Now, palettecomp contains the complementary color in HEX format
@@ -363,6 +390,22 @@
             setPaletteComplementaryColor();
         }
     }
+    private void setColor() 
+    {
+        if (recentColor[0] != _pickerColor)
+        {
+            string tempRecentColor = recentColor[recentColor.Length - 1];
+            for (int t = recentColor.Length - 1; t > 0; t--)
+            {
+                recentColor[t] = recentColor[t-1];
+            }
+            recentColor[0] = tempRecentColor;
+            recentColor[0] = _pickerColor.ToString(MudColorOutputFormats.Hex);
+            setPaletteBrightnessDarker();
+            setPaletteBrightnessLighter();
+            setPaletteComplementaryColor();
+        }
+    }
     private void setPaletteBrightnessDarker()
     {
         System.Drawing.Color _basecolor = StringToColor(recentColor[0]);
@@ -377,7 +420,7 @@
             if (basecolor.L > .500){
                 paletteInfoTextColor1[t] = "#000000";
             }
-            if (basecolor.L < .500){
+            else {
                 paletteInfoTextColor1[t] = "#ffffff";
             }
         }
@@ -393,10 +436,10 @@
             }
             palettebrightnessLight[t] = HexConverter(_basecolor);
             basecolor = palettebrightnessLight[t];
-            if (basecolor.L > .5){
+            if (basecolor.L > .500){
                 paletteInfoTextColor2[t] = "#000000";
             }
-            if (basecolor.L < .5){
+            else {
                 paletteInfoTextColor2[t] = "#ffffff";
             }
         }
